@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PEDIDOS - HOME</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+   <!-- Navbar (sit on top) -->
+  <div class="w3-top w3-hide-small">
+    <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+      <a href="#" class="w3-bar-item w3-button">HOME</a>
+      <a href="cajero.html" class="w3-bar-item w3-button"><img src="imagenes/cajero.png" width="30"> VER SESION CAJERO</a>
+      <a href="mesero.html" class="w3-bar-item w3-button"><img src="imagenes/mesero.png" width="30"> VER SESION MESERO</a> 
+      <a href="index.html"  class="me-5 mt-1 fs-4 btn btn-danger float-end w3-bar-item">SALIR</a>
+      <a href="#" class="me-5 mt-1 fs-4 float-end w3-bar-item w3-button">
+        <img src="imagenes/cajero.png" width="30"> USUARIO:<span class="fw-bold">User</span>
+      </a>
+    </div>
+  </div>
+    
+  <!-- Menu Container -->
+  <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+    <div class="w3-content">
+        <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">PEDIDOS Realizados</h1>
+        <div class="container">
+            <div class="row justify-content-around">
+              <div class="col-12 col-md-10">
+                <div class="w3-row w3-center w3-border w3-border-dark-grey">
+                  <a href="javascript:void(0)" onclick="openMenu(event, 'PorPreparar');" id="myLink">
+                    <div class="w3-col s12 tablink w3-padding-large w3-hover-red">🗒️ POR PREPARAR</div>
+                  </a>
+                </div>
+                <div id="PorPreparar" class="w3-container menu w3-padding-32 w3-white">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Platillo</th>
+                        <th>Mesa</th>
+                        <th>Cantidad</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="listaPedidos">
+                      <!-- aqui va el listado --> 
+                      <!-- aqui va el listado -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editarPedidoModal" tabindex="-1" aria-labelledby="editarPedidoTitulo" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-4" id="editarPedidoTitulo">Editar pedido</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <form id="formEditarPedido">
+          <div class="modal-body">
+            <input type="hidden" id="pedidoId">
+            <input type="hidden" id="pedidoEstado">
+            <div class="row g-3">
+              <div class="col-md-8">
+                <label for="pedidoPlatillo" class="form-label">Platillo</label>
+                <select class="form-select" id="pedidoPlatillo" required>
+                  <option value="Formaggio">Formaggio</option>
+                  <option value="Margherita">Margherita</option>
+                  <option value="Chicken">Chicken</option>
+                  <option value="Pineapple'o'clock">Pineapple'o'clock</option>
+                  <option value="Meat Town">Meat Town</option>
+                  <option value="Parma">Parma</option>
+                  <option value="Lasagna">Lasagna</option>
+                  <option value="Ravioli">Ravioli</option>
+                  <option value="Spaghetti Classica">Spaghetti Classica</option>
+                  <option value="Seafood pasta">Seafood pasta</option>
+                  <option value="Today's Soup">Sopa del día</option>
+                  <option value="Bruschetta">Bruschetta</option>
+                  <option value="Garlic bread">Garlic bread</option>
+                  <option value="Tomozzarella">Tomozzarella</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="pedidoPrecio" class="form-label">Precio</label>
+                <select class="form-select" id="pedidoPrecio" required>
+                  <option value="15500">$15.500</option>
+                  <option value="12500">$12.500</option>
+                  <option value="17000">$17.000</option>
+                  <option value="16500">$16.500</option>
+                  <option value="20000">$20.000</option>
+                  <option value="21500">$21.500</option>
+                  <option value="13500">$13.500</option>
+                  <option value="14500">$14.500</option>
+                  <option value="11000">$11.000</option>
+                  <option value="25500">$25.500</option>
+                  <option value="5500">$5.500</option>
+                  <option value="8500">$8.500</option>
+                  <option value="9500">$9.500</option>
+                  <option value="7500">$7.500</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="pedidoMesa" class="form-label">Mesa</label>
+                <select class="form-select" id="pedidoMesa" required>
+                  <option value="1">Mesa 1</option>
+                  <option value="2">Mesa 2</option>
+                  <option value="3">Mesa 3</option>
+                  <option value="4">Mesa 4</option>
+                  <option value="5">Mesa 5</option>
+                  <option value="6">Mesa 6</option>
+                  <option value="7">Mesa 7</option>
+                  <option value="8">Mesa 8</option>
+                  <option value="9">Mesa 9</option>
+                  <option value="10">Mesa 10</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="pedidoCantidad" class="form-label">Cantidad</label>
+                <select class="form-select" id="pedidoCantidad" required>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+               <label for="pedidoFecha" class="form-label">Fecha</label>
+               <input type="datetime-local" class="form-control" id="pedidoFecha" required>
+                </select>
+              </div>
+              <div class="col-md-6">
+              <label for="pedidoCliente" class="form-label">Cliente</label>
+             <input type="text" class="form-control" id="pedidoCliente"
+             placeholder="Nombre del cliente" required>
+              </div>
+              <div class="col-12">
+               <label for="pedidoObservaciones" class="form-label">Observaciones</label>
+              <input type="text" class="form-control" id="pedidoObservaciones"
+              placeholder="Escriba las observaciones">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-success">Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Footer -->
+<footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  </footer>
+  
+  <script>
+  // Tabbed Menu
+function openMenu(evt, menuName) {
+    var i, x, tablinks;
+
+    x = document.getElementsByClassName("menu");
+
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+
+    tablinks = document.getElementsByClassName("tablink");
+
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+    }
+
+    document.getElementById(menuName).style.display = "block";
+
+    evt.currentTarget.firstElementChild.className += " w3-red";
+}
+
+document.getElementById("myLink").click();
+  </script>
+  <script src="js/pedidos.js"></script>
+  </body>
+  </html>
